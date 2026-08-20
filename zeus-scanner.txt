@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Z E U S - Local Scanner</title>
+	<title>HUB - Local Scanner</title>
 	<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 	<script src="https://cdn.tailwindcss.com"></script>
 	<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
@@ -48,7 +48,7 @@
 		<div class="px-6 py-4 border-b border-amoled-border flex justify-between items-center bg-zinc-900/50 shrink-0">
 			<div class="flex items-center gap-2 relative">
 				<svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-				<h3 class="font-bold text-zinc-100 text-sm">اسکنر لوکال آی‌پی تمیز زئوس</h3>
+				<h3 class="font-bold text-zinc-100 text-sm">اسکنر لوکال آی‌پی تمیز HUB</h3>
 				<span id="core-status" class="flex w-3 h-3 ml-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.8)] transition-colors duration-300 relative" title="هسته متصل است">
 					<span id="core-status-ping" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
 				</span>
@@ -164,7 +164,7 @@
 			</a>
 			<a href="https://t.me/PANEL_ZEUS" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-amoled-card border border-amoled-border rounded-full shadow-sm hover:shadow-md transition text-sm font-bold text-zinc-300 hover:text-sky-400 group">
 				<svg class="w-5 h-5 text-sky-500 group-hover:scale-110 transition" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.94-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.37.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .24z"/></svg>
-				PANEL_ZEUS@
+				کانال HUB
 			</a>
 			<a href="https://t.me/ZEUS_PANEL_BOT" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-amoled-card border border-amoled-border rounded-full shadow-sm hover:shadow-md transition text-sm font-bold text-amber-500 hover:text-amber-400 group">
 				<svg class="w-5 h-5 text-amber-500 group-hover:scale-110 transition" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
@@ -605,7 +605,7 @@ def scan_ip(ip, target_sni, timeout=3.5):
                 context.check_hostname = False
                 context.verify_mode = ssl.CERT_NONE
                 with context.wrap_socket(sock, server_hostname=target_sni) as ssock:
-                    req = f"GET / HTTP/1.1\r\nHost: {target_sni}\r\nUser-Agent: Zeus-Scanner\r\nConnection: close\r\n\r\n"
+                    req = f"GET / HTTP/1.1\r\nHost: {target_sni}\r\nUser-Agent: HUB-Scanner\r\nConnection: close\r\n\r\n"
                     ssock.sendall(req.encode('ascii'))
                     resp = ssock.recv(2048)
                     if resp.startswith(b"HTTP/1."):
@@ -620,7 +620,7 @@ def scan_ip(ip, target_sni, timeout=3.5):
     else:
         return {"ip": ip, "success": False, "error": last_error}
 
-class ZeusRequestHandler(BaseHTTPRequestHandler):
+class HubRequestHandler(BaseHTTPRequestHandler):
     def do_OPTIONS(self):
         self.send_response(200)
         self.send_header('Access-Control-Allow-Origin', '*')
@@ -680,9 +680,9 @@ class ZeusRequestHandler(BaseHTTPRequestHandler):
 
 if __name__ == '__main__':
     server_address = ('127.0.0.1', PORT)
-    httpd = ThreadingHTTPServer(server_address, ZeusRequestHandler)
+    httpd = ThreadingHTTPServer(server_address, HubRequestHandler)
     print("\033[96m==========================================\033[0m")
-    print("\033[92m  Zeus Scanner Core (Unified) is RUNNING!\033[0m")
+    print("\033[92m  HUB Scanner Core (Unified) is RUNNING!\033[0m")
     print(f"\033[93m  Open in Browser: http://127.0.0.1:{PORT}/\033[0m")
     print("\033[90m  Do NOT close this terminal during scan.\033[0m")
     print("\033[96m==========================================\033[0m")
@@ -711,7 +711,7 @@ $listener.Prefixes.Add($url)
 try {
     $listener.Start()
     Write-Host "==========================================" -ForegroundColor Cyan
-    Write-Host "  Zeus Scanner Core (Unified) is RUNNING!" -ForegroundColor Green
+    Write-Host "  HUB Scanner Core (Unified) is RUNNING!" -ForegroundColor Green
     Write-Host "  Listening on: $url" -ForegroundColor Yellow
     Write-Host "  Do NOT close this window during scan." -ForegroundColor Gray
     Write-Host "==========================================" -ForegroundColor Cyan
@@ -811,7 +811,7 @@ try {
                             if ($task.SslAsyncResult.IsCompleted) {
                                 try {
                                     $task.SslStream.EndAuthenticateAsClient($task.SslAsyncResult)
-                                    $reqStr = "GET / HTTP/1.1`r`nHost: $sni`r`nUser-Agent: Zeus-Scanner`r`nConnection: close`r`n`r`n"
+                                    $reqStr = "GET / HTTP/1.1`r`nHost: $sni`r`nUser-Agent: HUB-Scanner`r`nConnection: close`r`n`r`n"
                                     $reqBytes = [System.Text.Encoding]::ASCII.GetBytes($reqStr)
                                     $task.SslStream.Write($reqBytes, 0, $reqBytes.Length)
                                     $task.ReadAsyncResult = $task.SslStream.BeginRead($task.Buffer, 0, $task.Buffer.Length, $null, $null)
