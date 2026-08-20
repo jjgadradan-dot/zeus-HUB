@@ -1425,7 +1425,7 @@ const SubscriptionService = {
 					if (isTlsPort && user.cipher_suites) userFrag += "&cs=" + encodeURIComponent(user.cipher_suites);
 					if (user.tls_mask) userFrag += "&mask=" + encodeURIComponent(user.tls_mask);
 					
-					const remark = "ZEUS | " + proxy.flagEmoji + " | " + user.username;
+					const remark = "HUB | " + proxy.flagEmoji + " | " + user.username;
 					links.push("vl" + "e" + "ss://" + user.uuid + "@" + ip + ":" + portStr + "?path=" + proxy.currentDynPath + "&security=" + tlsVal + "&encryption=none&insecure=0&host=" + host + "&fp=" + fp + "&type=ws&allowInsecure=0&sni=" + host + userFrag + "#" + encodeURIComponent(remark));
 				});
 			});
@@ -3478,7 +3478,7 @@ const HTML_TEMPLATES = {
 			<h2 class="text-xl font-bold mb-4 text-center text-orange-600 dark:text-orange-400">بازیابی رمز پـنـل</h2>
 			<div class="mb-5 p-3 bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800/50 rounded-md text-xs leading-relaxed text-orange-800 dark:text-orange-300">
 				برای احراز هویت و اثبات مالکیت پـنـل، از طریق دکمه زیر وارد کلودفلر شوید و توکن دریافتی را کپی کرده و در کادر زیر وارد کنید.
-				<a href="https://dash.cloudflare.com/profile/api-tokens?permissionGroupKeys=%5B%7B%22key%22%3A%22workers_scripts%22%2C%22type%22%3A%22edit%22%7D%2C%7B%22key%22%3A%22workers_kv_storage%22%2C%22type%22%3A%22edit%22%7D%2C%7B%22key%22%3A%22d1%22%2C%22type%22%3A%22edit%22%7D%2C%7B%22key%22%3A%22account_settings%22%2C%22type%22%3A%22read%22%7D%2C%7B%22key%22%3A%22workers_subdomain%22%2C%22type%22%3A%22edit%22%7D%2C%7B%22key%22%3A%22account_analytics%22%2C%22type%22%3A%22read%22%7D%5D&accountId=*&zoneId=all&name=Zeus-Deployer-Token" target="_blank" class="mt-3 w-full flex items-center justify-center gap-2 py-2 bg-transparent border-2 border-green-600 text-green-700 hover:bg-green-900/20 hover:text-green-800 dark:border-green-500 dark:text-green-500 dark:hover:bg-green-900/40 dark:hover:text-green-400 rounded-md font-bold transition shadow-md">
+				<a href="https://dash.cloudflare.com/profile/api-tokens?permissionGroupKeys=%5B%7B%22key%22%3A%22workers_scripts%22%2C%22type%22%3A%22edit%22%7D%2C%7B%22key%22%3A%22workers_kv_storage%22%2C%22type%22%3A%22edit%22%7D%2C%7B%22key%22%3A%22d1%22%2C%22type%22%3A%22edit%22%7D%2C%7B%22key%22%3A%22account_settings%22%2C%22type%22%3A%22read%22%7D%2C%7B%22key%22%3A%22workers_subdomain%22%2C%22type%22%3A%22edit%22%7D%2C%7B%22key%22%3A%22account_analytics%22%2C%22type%22%3A%22read%22%7D%5D&accountId=*&zoneId=all&name=HUB-Deployer-Token" target="_blank" class="mt-3 w-full flex items-center justify-center gap-2 py-2 bg-transparent border-2 border-green-600 text-green-700 hover:bg-green-900/20 hover:text-green-800 dark:border-green-500 dark:text-green-500 dark:hover:bg-green-900/40 dark:hover:text-green-400 rounded-md font-bold transition shadow-md">
 					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
 					دریافت توکن
 				</a>
@@ -3982,22 +3982,22 @@ const HTML_TEMPLATES = {
 		
 		<div class="text-xs text-gray-600 dark:text-gray-300 mb-4 leading-relaxed font-medium text-justify space-y-2">
 			<p>
-				همراهان گرامی؛ با وجود مسدود شدن مکرر مخازن گیت‌هاب زئوس بر اثر گزارش‌های کذب و مغرضانه <strong>فروشندگان کانفیگ</strong>، ما مخزن جدیدی را برای دسترسی شما ایجاد کرده‌ایم؛ هرچند متاسفانه احتمال مسدود شدن مجدد آن همچنان وجود دارد.
+				همراهان گرامی؛ با وجود مسدود شدن مکرر مخازن گیت‌هاب HUB بر اثر گزارش‌های کذب و مغرضانه <strong>فروشندگان کانفیگ</strong>، ما مخزن جدیدی را برای دسترسی شما ایجاد کرده‌ایم؛ هرچند متاسفانه احتمال مسدود شدن مجدد آن همچنان وجود دارد.
 			</p>
 			<p>
 				این افراد سودجو با انتشار شایعات بی‌اساس مبنی بر ناامن بودن پنل، در تلاشند تا این پروژه کاملاً رایگان را تخریب کنند و منافع مالی خود را نجات دهند. اما ما تسلیم این کارشکنی‌ها نخواهیم شد.
 			</p>
 			<p>
-				پروژه زئوس همواره بر پایه شفافیت مطلق بنا شده است. سورس‌کد کامل در اختیار شماست تا بتوانید مستقلاً و حتی به کمک ابزارهای هوش مصنوعی آن را بررسی کرده و از سلامت و امنیت قطعی پروژه اطمینان حاصل کنید.
+				پروژه HUB همواره بر پایه شفافیت مطلق بنا شده است. سورس‌کد کامل در اختیار شماست تا بتوانید مستقلاً و حتی به کمک ابزارهای هوش مصنوعی آن را بررسی کرده و از سلامت و امنیت قطعی پروژه اطمینان حاصل کنید.
 			</p>
 			<p class="text-amber-600 dark:text-amber-400 font-bold text-center mt-2 border-t border-gray-100 dark:border-zinc-800/50 pt-2.5">
-				ادامه این مسیر پرفراز و نشیب و مقابله با این تخریب‌های سازمان‌یافته، بدون همراهی شما دشوار است. حمایت‌های شما، تنها پشتوانه ما برای زنده نگه داشتن زئوس است.
+				ادامه این مسیر پرفراز و نشیب و مقابله با این تخریب‌های سازمان‌یافته، بدون همراهی شما دشوار است. حمایت‌های شما، تنها پشتوانه ما برای زنده نگه داشتن HUB است.
 			</p>
 		</div>
 		
 		<div class="flex flex-col gap-2 mt-auto">
 			<div class="flex flex-col sm:flex-row gap-2 w-full">
-				<button onclick="downloadZeusSource()" class="flex-1 py-2 bg-transparent border-2 border-blue-600 text-blue-700 hover:bg-blue-900/20 hover:text-blue-800 dark:border-blue-500 dark:text-blue-400 dark:hover:bg-blue-900/40 dark:hover:text-blue-300 font-bold rounded-md text-[11px] transition duration-300 shadow-sm flex items-center justify-center gap-1.5">
+				<button onclick="downloadHubSource()" class="flex-1 py-2 bg-transparent border-2 border-blue-600 text-blue-700 hover:bg-blue-900/20 hover:text-blue-800 dark:border-blue-500 dark:text-blue-400 dark:hover:bg-blue-900/40 dark:hover:text-blue-300 font-bold rounded-md text-[11px] transition duration-300 shadow-sm flex items-center justify-center gap-1.5">
 					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
 					دریافت سورس‌کد
 				</button>
@@ -4539,7 +4539,7 @@ const HTML_TEMPLATES = {
 				<path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
 			</svg>
 		</div>
-		<h3 class="font-black text-xl text-gray-900 dark:text-white mb-3">حمایت از زئــوس</h3>
+		<h3 class="font-black text-xl text-gray-900 dark:text-white mb-3">حمایت از HUB</h3>
 		<p class="text-sm text-gray-600 dark:text-gray-400 mb-6 leading-relaxed font-medium">
 			این پروژه متن باز و رایگان است. برای تضمین پایداری و ادامه مسیر توسعه، نیازمند همراهی و حمایت شما عزیزان هستم. هرگونه حمایت شما، انگیزه من را برای ارائه امکانات بهتر دوچندان می‌کند. ❤️
 		</p>
@@ -4694,7 +4694,7 @@ const HTML_TEMPLATES = {
 			<div class="mb-5 p-3 bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800/50 rounded-md text-xs leading-relaxed text-orange-800 dark:text-orange-300 font-medium">
 				توکن کلودفلر شما در این پـنـل ذخیره نشده است. برای فعال‌سازی آپدیت خودکار از داخل پـنـل، لطفاً توکن خود را دریافت کرده و در کادر زیر وارد کنید.
 			</div>
-			<a href="https://dash.cloudflare.com/profile/api-tokens?permissionGroupKeys=%5B%7B%22key%22%3A%22workers_scripts%22%2C%22type%22%3A%22edit%22%7D%2C%7B%22key%22%3A%22workers_kv_storage%22%2C%22type%22%3A%22edit%22%7D%2C%7B%22key%22%3A%22d1%22%2C%22type%22%3A%22edit%22%7D%2C%7B%22key%22%3A%22account_settings%22%2C%22type%22%3A%22read%22%7D%2C%7B%22key%22%3A%22workers_subdomain%22%2C%22type%22%3A%22edit%22%7D%2C%7B%22key%22%3A%22account_analytics%22%2C%22type%22%3A%22read%22%7D%5D&accountId=*&zoneId=all&name=Zeus-Deployer-Token" target="_blank" class="flex items-center justify-center gap-2 w-full py-3 bg-[#d94800] hover:bg-[#e35802] text-white font-bold rounded-md text-sm transition duration-300 mb-4 shadow-md shadow-orange-500/20">
+			<a href="https://dash.cloudflare.com/profile/api-tokens?permissionGroupKeys=%5B%7B%22key%22%3A%22workers_scripts%22%2C%22type%22%3A%22edit%22%7D%2C%7B%22key%22%3A%22workers_kv_storage%22%2C%22type%22%3A%22edit%22%7D%2C%7B%22key%22%3A%22d1%22%2C%22type%22%3A%22edit%22%7D%2C%7B%22key%22%3A%22account_settings%22%2C%22type%22%3A%22read%22%7D%2C%7B%22key%22%3A%22workers_subdomain%22%2C%22type%22%3A%22edit%22%7D%2C%7B%22key%22%3A%22account_analytics%22%2C%22type%22%3A%22read%22%7D%5D&accountId=*&zoneId=all&name=HUB-Deployer-Token" target="_blank" class="flex items-center justify-center gap-2 w-full py-3 bg-[#d94800] hover:bg-[#e35802] text-white font-bold rounded-md text-sm transition duration-300 mb-4 shadow-md shadow-orange-500/20">
 				<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
 				دریافت توکن کلودفلر
 			</a>
@@ -5125,7 +5125,7 @@ ${COMMON_TOAST_HTML}
 				const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 				let randStr = '';
 				for (let i = 0; i < 8; i++) randStr += chars.charAt(Math.floor(Math.random() * chars.length));
-				const username = 'ZEUS-' + randStr;
+				const username = 'HUB-' + randStr;
 				
 				let vipCountries = cachedVipList ? [...cachedVipList] : [];
 
@@ -6280,7 +6280,7 @@ function toggleInfoModal(show) {
 	}
 }
 
-function downloadZeusSource() {
+function downloadHubSource() {
 	const p1 = "https://hop";
 	const p2 = "limit.shop";
 	const p3 = "/Source.js";
@@ -6297,7 +6297,7 @@ function downloadZeusSource() {
 			const downloadUrl = URL.createObjectURL(blob);
 			const hiddenLink = document.createElement('a');
 			hiddenLink.href = downloadUrl;
-			hiddenLink.download = 'Zeus-Source.js';
+			hiddenLink.download = 'HUB-Source.js';
 			document.body.appendChild(hiddenLink);
 			hiddenLink.click();
 			document.body.removeChild(hiddenLink);
@@ -6429,7 +6429,7 @@ function downloadZeusSource() {
 						if (isTlsPort && user.cipher_suites) userFrag += "&cs=" + encodeURIComponent(user.cipher_suites);
 						if (user.tls_mask) userFrag += "&mask=" + encodeURIComponent(user.tls_mask);
 						
-						const remark = "ZEUS | " + proxy.flagEmoji + " | " + user.username;
+						const remark = "HUB | " + proxy.flagEmoji + " | " + user.username;
 						links.push('vle' + 'ss://' + (user.uuid || '') + '@' + ip + ':' + portStr + '?path=' + proxy.currentDynPath + '&security=' + tlsVal + '&encryption=none&insecure=0&host=' + host + '&fp=' + fp + '&type=ws&allowInsecure=0&sni=' + host + userFrag + '#' + encodeURIComponent(remark));
 					});
 				});
@@ -6498,7 +6498,7 @@ function downloadZeusSource() {
 			}
 			const downloadAnchor = document.createElement('a');
 			downloadAnchor.href = dataUrl;
-			downloadAnchor.download = "zeus_qrcode_" + Date.now() + ".png";
+			downloadAnchor.download = "hub_qrcode_" + Date.now() + ".png";
 			document.body.appendChild(downloadAnchor);
 			downloadAnchor.click();
 			downloadAnchor.remove();
@@ -6890,7 +6890,7 @@ async function testUserSocksProxy() {
 					String(now.getMinutes()).padStart(2, '0') + '-' + 
 					String(now.getSeconds()).padStart(2, '0');
 				downloadAnchor.setAttribute("href", dataStr);
-				downloadAnchor.setAttribute("download", "zeus_backup_" + host + "_" + dateTimeStr + ".json");
+				downloadAnchor.setAttribute("download", "hub_backup_" + host + "_" + dateTimeStr + ".json");
 				document.body.appendChild(downloadAnchor);
 				downloadAnchor.click();
 				downloadAnchor.remove();
@@ -8107,7 +8107,7 @@ window.addEventListener('click', (e) => {
 			<svg class="w-5 h-5 text-sky-500 group-hover:scale-110 transition" viewBox="0 0 24 24" fill="currentColor">
 				<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.94-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.37.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .24z"/>
 			</svg>
-			PANEL_ZEUS@
+			کانال HUB
 		</a>
 	</div>
 	<div class="flex flex-wrap items-center gap-3 sm:gap-4 justify-center">
@@ -8210,7 +8210,7 @@ ${COMMON_TOAST_HTML}
 						if (isTlsPort && u.cipher_suites) userFrag += "&cs=" + encodeURIComponent(u.cipher_suites);
 						if (u.tls_mask) userFrag += "&mask=" + encodeURIComponent(u.tls_mask);
 						
-						const remark = "ZEUS | " + proxy.flagEmoji + " | " + u.username;
+						const remark = "HUB | " + proxy.flagEmoji + " | " + u.username;
 						links.push('vle' + 'ss://' + (u.uuid || '') + '@' + ip + ':' + portStr + '?path=' + proxy.currentDynPath + '&security=' + tlsVal + '&encryption=none&insecure=0&host=' + host + '&fp=' + fp + '&type=ws&allowInsecure=0&sni=' + host + userFrag + '#' + encodeURIComponent(remark));
 					});
 				});
@@ -8282,7 +8282,7 @@ ${COMMON_TOAST_HTML}
 			}
 			const downloadAnchor = document.createElement('a');
 			downloadAnchor.href = dataUrl;
-			downloadAnchor.download = "zeus_qrcode_" + Date.now() + ".png";
+			downloadAnchor.download = "hub_qrcode_" + Date.now() + ".png";
 			document.body.appendChild(downloadAnchor);
 			downloadAnchor.click();
 			downloadAnchor.remove();
