@@ -4264,13 +4264,13 @@ const HTML_TEMPLATES = {
 								</div>
 								<div class="flex items-center gap-3">
 									<label class="relative inline-flex items-center cursor-pointer select-none" onclick="event.stopPropagation();">
-										<input type="checkbox" id="input-advanced-settings-toggle" onchange="toggleAdvancedSettingsInputs(this.checked)" class="sr-only peer">
+										<input type="checkbox" id="input-advanced-settings-toggle" onchange="toggleAdvancedSettingsInputs(this.checked)" class="sr-only peer" checked>
 										<div class="w-8 h-4 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-zinc-700 peer-checked:bg-purple-500 transition-colors after:content-[''] after:absolute after:top-[2px] after:right-[2px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-transform peer-checked:after:-translate-x-[16px]"></div>
 									</label>
-									<svg id="advanced-settings-icon" class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+									<svg id="advanced-settings-icon" class="w-4 h-4 transition-transform duration-300 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
 								</div>
 							</div>
-							<div id="advanced-settings-container" class="hidden opacity-50 pointer-events-none transition-opacity duration-300 p-3 border-t border-gray-200 dark:border-amoled-border space-y-3 bg-white dark:bg-amoled-card">
+							<div id="advanced-settings-container" class="transition-opacity duration-300 p-3 border-t border-gray-200 dark:border-amoled-border space-y-3 bg-white dark:bg-amoled-card">
 								<div>
 									<label class="block text-[10px] font-bold text-gray-500 dark:text-zinc-400 mb-1 tracking-wider">Advanced Fragment (fm)</label>
 									<input type="text" id="input-advanced-frag" placeholder="{&quot;tcp&quot;: [{&quot;type&quot;: &quot;fragment&quot;..." dir="ltr" class="w-full px-2 py-1.5 bg-gray-50 dark:bg-amoled-input border border-gray-200 dark:border-amoled-border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-[10px] font-mono text-gray-800 dark:text-zinc-100 placeholder-gray-400">
@@ -5062,6 +5062,12 @@ ${COMMON_TOAST_HTML}
 					if (icon) icon.classList.add('rotate-180');
 				} else {
 					container.classList.add('opacity-50', 'pointer-events-none');
+					if (icon) icon.classList.remove('rotate-180');
+					/* وقتی تنظیمات پیشرفته خاموش شد، مقادیر واردشده پاک می‌شوند تا به اشتباه در کانفیگ ذخیره نشوند */
+					['input-advanced-frag', 'input-cipher-suites', 'input-tls-mask', 'input-final-mask'].forEach(function(id) {
+						const el = document.getElementById(id);
+						if (el) el.value = '';
+					});
 				}
 			}
 		};
@@ -5123,8 +5129,8 @@ ${COMMON_TOAST_HTML}
 				const addressInput = document.getElementById('input-address');
 				if (addressInput) addressInput.value = '';
 				const advSettingsToggle = document.getElementById('input-advanced-settings-toggle');
-				if (advSettingsToggle) advSettingsToggle.checked = false;
-				if (typeof window.toggleAdvancedSettingsInputs === 'function') window.toggleAdvancedSettingsInputs(false);
+				if (advSettingsToggle) advSettingsToggle.checked = true;
+				if (typeof window.toggleAdvancedSettingsInputs === 'function') window.toggleAdvancedSettingsInputs(true);
 				document.getElementById('hidden-auto-rotate').value = '0';
 				document.getElementById('hidden-rotate-time').value = '';
 				document.getElementById('hidden-ip-operator').value = 'all';
@@ -5339,6 +5345,9 @@ ${COMMON_TOAST_HTML}
 			const fragToggle = document.getElementById('input-frag-toggle');
 			if (fragToggle) fragToggle.checked = true;
 			window.toggleFragInputs(true);
+			const advSettingsToggleOpen = document.getElementById('input-advanced-settings-toggle');
+			if (advSettingsToggleOpen) advSettingsToggleOpen.checked = true;
+			if (typeof window.toggleAdvancedSettingsInputs === 'function') window.toggleAdvancedSettingsInputs(true);
 			const autoResetToggle = document.getElementById('input-auto-reset-toggle');
 			if (autoResetToggle) autoResetToggle.checked = false;
 			document.getElementById('input-auto-reset-vol').value = '';
@@ -5967,11 +5976,13 @@ ${COMMON_TOAST_HTML}
 			const block_ads = document.getElementById('input-block-ads').checked ? 1 : 0;
 			const frag_len = "";
 			const frag_int = "";
-			const isAdvancedSettingsOn = document.getElementById('input-advanced-settings-toggle') ? document.getElementById('input-advanced-settings-toggle').checked : false;
-			const advanced_frag = (isAdvancedSettingsOn && document.getElementById('input-advanced-frag')) ? document.getElementById('input-advanced-frag').value.trim() : "";
-			const cipher_suites = (isAdvancedSettingsOn && document.getElementById('input-cipher-suites')) ? document.getElementById('input-cipher-suites').value.trim() : "";
-			const tls_mask = (isAdvancedSettingsOn && document.getElementById('input-tls-mask')) ? document.getElementById('input-tls-mask').value.trim() : "";
-			const final_mask = (isAdvancedSettingsOn && document.getElementById('input-final-mask')) ? document.getElementById('input-final-mask').value.trim() : "";
+			/* مقادیر تنظیمات پیشرفته بدون وابستگی به وضعیت سوییچ خوانده می‌شوند؛
+			   هر فیلدی که مقدار داشته باشد حتماً در کانفیگ مشتری اعمال می‌شود.
+			   (با خاموش کردن سوییچ، خود فیلدها پاک می‌شوند تا رفتار غیرمنتظره‌ای پیش نیاید) */
+			const advanced_frag = document.getElementById('input-advanced-frag') ? document.getElementById('input-advanced-frag').value.trim() : "";
+			const cipher_suites = document.getElementById('input-cipher-suites') ? document.getElementById('input-cipher-suites').value.trim() : "";
+			const tls_mask = document.getElementById('input-tls-mask') ? document.getElementById('input-tls-mask').value.trim() : "";
+			const final_mask = document.getElementById('input-final-mask') ? document.getElementById('input-final-mask').value.trim() : "";
 			const user_address = document.getElementById('input-address') ? document.getElementById('input-address').value.trim() : "";
 			const isAutoReset = document.getElementById('input-auto-reset-toggle').checked;
 			const auto_reset_vol_days = isAutoReset ? parseInt(document.getElementById('input-auto-reset-vol').value) || 0 : 0;
@@ -6693,14 +6704,19 @@ window.toggleGfx = function(isChecked) {
 
 window.fillPatternihaValues = function() {
 	const fragInput = document.getElementById('input-advanced-frag');
+	const fmInput = document.getElementById('input-final-mask');
 	const csInput = document.getElementById('input-cipher-suites');
+	const patternihaFrag = '{"tcp": [{"type": "fragment", "settings": {"packets": "tlshello", "lengths": ["5", "94", "1"], "delays": ["0"], "maxSplit": "0"}},{"type": "fragment", "settings": {"packets": "1-1", "lengths": ["109", "1"], "delays": ["1"], "maxSplit": "355"}}]}';
 	if (fragInput) {
-		fragInput.value = '{"tcp": [{"type": "fragment", "settings": {"packets": "tlshello", "lengths": ["5", "94", "1"], "delays": ["0"], "maxSplit": "0"}},{"type": "fragment", "settings": {"packets": "1-1", "lengths": ["109", "1"], "delays": ["1"], "maxSplit": "355"}}]}';
+		fragInput.value = patternihaFrag;
+	}
+	if (fmInput) {
+		fmInput.value = patternihaFrag;
 	}
 	if (csInput) {
 		csInput.value = 'TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256:TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384:TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384:TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256:TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256:TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256:TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256:TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA:TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA:TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256:TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256';
 	}
-	showToast('✅ مقادیر پیش‌فرض Patterniha با موفقیت اعمال شد.');
+	showToast('✅ مقادیر پیش‌فرض Patterniha (Fragment، FinalMask و Cipher Suites) اعمال شد.');
 };
 
 function saveSettings() {
